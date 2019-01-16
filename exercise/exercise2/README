@@ -1,0 +1,28 @@
+You will write a program that inspects IP packets and prints some
+information about them. The packets should be read in raw pcap
+format from a file (such as the output from tcpdump -w), which will
+be the sole argument to formatter, an executable you will write.
+This may be a script or a compiled program. If you provide a Makefile,
+the test will run make first.
+
+The output format should be:
+
+<src> <dst> <len> <proto> ...
+
+In this, <src> and <dst> are the packet source and destination,
+<len> is the packet length, <proto> is the Layer 4 protocol, and
+anything else is protocol specific.
+
+  * For ICMP, UDP, and TCP, <proto> should be the string "ICMP",
+    "UDP", or "TCP".  For any other Layer 4 protocol, print the
+    protocol number and do nothing else.
+
+  * For UDP and TCP, the next two fields should be the source
+    port and destination port, in that order.
+
+  * For TCP, this should be followed by the flags that are
+    set, in their standard 3-letter abbreviations (SYN, ACK, etc.)
+    and comma-separated without spaces (eg, "ACK,SYN"), followed
+    by the sequence number and acknowledgment number. If either of
+    these is not defined, the line should print a "-" instead.
+

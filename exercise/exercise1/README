@@ -1,0 +1,16 @@
+CIDR blocks have a canonical form, so while <dotted-quad>/<len>
+always unambiguously refers to a specific block, that does not make
+it a correct, canonical representation of the block. Write a script
+or program (we will run "make" if a Makefile is present in your
+submission) named "cidr" that takes a file as its input and produces
+canonical CIDR blocks as output. The file will have one block per
+line, in the format
+
+    a.b.c.d/n
+
+where a, b, c, d, and n are all numbers. The output should be the
+canonical CIDR blocks, in the same order and format. Your program
+will be invoked as
+  
+    ./cidr <filename>
+

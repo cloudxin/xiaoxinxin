@@ -1,0 +1,20 @@
+For this question, you will write a program that assemble a valid
+SMTP message.  Your program should be named smtp, and may be a
+script or a compiled program.
+
+We will invoke your program as
+
+    ./smtp -m <from addr> -t <to addr> -s <subject> -f <message file> [<attachment>...]
+
+The SMTP message should then be written to STDOUT, including all
+necessary headers and properly formatted.
+
+For example, we might call your program with a simple message body
+as
+
+    ./smtp -m tservo@gizmonic.cs.umd.edu -t ctrobot@gizmonic.cs.umd.edu -s 'Important information' -f sample_file
+
+or
+
+    ./smtp -m tservo@gizmonic.cs.umd.edu -t ctrobot@gizmonic.cs.umd.edu -s 'This is funny' -f sample_fileB far_side.jpg
+

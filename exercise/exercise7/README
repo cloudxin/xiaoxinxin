@@ -1,0 +1,40 @@
+At this point, you should be fairly comfortable with Wireshark. We
+will now look at 'tshark', the command-line version of Wireshark
+to extract specific fields from packets. You have been provided
+with a sample pcap file (sample.pcap) that contains mostly HTTP
+data, with a little bit of noise. Your goal is to familiarize
+yourself with tshark, and then print only the relevant HTTP fields.
+
+Example: to view only ICMP packets with relevant ICMP fields:
+
+    $> tshark -r sample.pcap -T fields -E separator="|" \
+            -e ip.src -e ip.dst -e icmp.type -e icmp.code \
+            -e frame.number -e frame.protocols -e frame.len icmp
+
+    10.0.2.15,8.8.8.8|8.8.8.8,10.0.2.15|3|3|6644|sll:ethertype:ip:icmp:ip:udp:dns|125
+    128.8.130.3|10.0.2.15|0|0|6730|sll:ethertype:ip:icmp:data|100
+    127.0.0.2,127.0.0.1|127.0.0.1,127.0.0.2|3|3|6990|sll:ethertype:ip:icmp:ip:udp|72
+
+You are to print the following HTTP fields delimited by a "|", in this order:
+
+ 1. Source IP Address
+ 2. Source Port
+ 3. Destination IP Address
+ 4. Destination Port
+ 5. Request Method
+ 6. Webpage Hostname
+ 7. Request URI
+ 8. Response Code
+ 9. Content Type
+
+Your script should be named "http" and should take in one argument,
+a pcap file [-f pcap file].
+
+Your output should look similar to the following:
+
+    ./http -f sample.pcap
+    127.0.0.1|48300|127.0.0.1|8000|GET|127.0.0.1:8000|/?username=alice&password=wonderland||
+    10.0.2.15|36712|50.31.169.131|80|GET|www.arstechnica.com|/||
+    10.0.2.15|45644|52.85.146.101|80|POST|ocsp.sca1b.amazontrust.com|/||application/ocsp-request
+    52.85.146.101|80|10.0.2.15|45644||||200|application/ocsp-response
+

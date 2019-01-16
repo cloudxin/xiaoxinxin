@@ -1,0 +1,18 @@
+Using a simple testbed containing (at a minumum) nodes named test0
+and test1, write a program that creates and sends correctly formatted
+ICMP messages of the following types (not in response to incoming
+traffic) from test0 to test1:
+
+  Type 0 -- Echo Reply
+  Type 11 -- Time Exceeded
+  Type 3, Code 4 -- DST Unreachable, Fragmentation Required
+
+The unspecified details for each are left for you to choose.
+
+Your specific testbed should be defined in a file called icmp.yml,
+which will be used as input for start_testbed.py.
+
+You must provide an executable named icmp. This may be a script or
+compiled.  The test will call make if a Makefile is present, as
+well as starting the testbed.
+

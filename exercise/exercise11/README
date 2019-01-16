@@ -1,0 +1,34 @@
+In this exercise, you will simulate the behavior of a switch. Note
+that this is just one switch in a potentially much larger extended
+LAN, so each port may have many end-hosts reachable through it.
+Your program or script should be named "switch", and it will be
+invoked as follows:
+
+    ./switch <num ports> <input file>
+  
+"<num ports>" is the number of ports the switch has (no more than
+128), and these should be numbered from 0 to (<num ports> - 1).
+"<input file>" will contain a series of lines representing frames
+arriving at the switch, which the switch must then forward
+appropriately.  Each frame's destination will be the address of a
+single host, not a multicast or broadcast address.  Lines will have
+the following form:
+
+<port> <dst addr> <src addr>
+
+After each line, your program should print the port number or numbers
+(separated by a single space) to which this frame should be forwarded.
+The switch begins with no knowledge of the network topology.
+
+For example, a frame coming in on port 3 that should be sent to
+port 1 would produce a line containing
+
+1
+
+while a broadcast would produce a line containing (assuming 8 ports)
+  
+0 1 2 4 5 6 7
+
+Note that the addresses may be arbitrary strings, which is the
+easiest way to handle the standard human-readable MAC address format.
+

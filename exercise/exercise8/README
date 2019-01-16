@@ -1,0 +1,39 @@
+You will implement the forwarding algorithm for the Chord protocol
+locally.  We will provide the topography of the Chord ring (Finger
+Table and Successor List).  Your chord script needs to take 1 command
+line argument, which is the name of the file that contains the
+topography of the Chord ring.
+
+You need to write a program named chord that takes a finger table
+file and an input file. Your program should hash the contents of
+the input file with SHA-1, and use that as a key for Chord. It
+should then use the information from the finger table to find the
+next hop to which the lookup should be directed.  You can use the
+SHA-1 hashing functions provided for your TCP Client/Server assignment
+if you choose to program in C.  Your program should then output the
+hash of the input, followed by the appropriate Chord node to which
+this hash should be forwarded.
+
+The test will invoke your program as:
+
+    ./chord <finger table> <input file>
+
+It should respond with
+
+    <input hash> <input>
+    <next hop ID>
+
+For example, if the file myInput contains "Hello",
+
+    ./chord ftable.chord myInput
+
+would produce the output
+
+    f7ff9e8b7bb2e09b70935a5d785e0cc5d9d0abf0 Hello
+    ffff079a26da635e60b834d069447e61b780f1cb
+
+For more information on Chord,
+
+Chord: A Scalable Peer-to-peer Lookup Protocol for Internet Applications. 
+        https://pdos.csail.mit.edu/papers/ton:chord/paper-ton.pdf.
+

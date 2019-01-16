@@ -1,0 +1,17 @@
+You will write a program or script named "tcp" which will simulate
+TCP's congestion control algorithm (not including Fast Retransmit
+or Fast Recovery).  It will be invoked as follows:
+  
+    ./tcp <MSS> <input file>
+
+The first argument is the maximum segment size for the connection.
+The second argument is a file containing a list of lines as follows:
+  
+ - If the line is a "+", it is an ACK for one MSS of data
+ - If the line is a "-", it is a timeout waiting for an ACK
+ 
+Upon first starting, your program should print the current value
+of CWND, and nothing else. After reading a line, your program should
+print the current value of CWND, and nothing else. Assume your
+program begins immediately after the three-way handshake.
+

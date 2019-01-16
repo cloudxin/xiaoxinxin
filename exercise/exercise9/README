@@ -1,0 +1,39 @@
+Most network applications do not send data as ASCII, because it's
+very inefficient. Instead, they serialize data into binary formats.
+There are many different ways to do this. One popular way is to
+begin with a fixed-length prefix that includes a length, allowing
+for arbitrary-length data. This is especially useful for TCP
+connections, where there is no inherent concept of messages, only
+data.
+
+You will write a program or script named "serial" that will serialize
+data and write it to a file. Your program will be invoked as follows:
+
+    ./serial <outfile> <opcode> [<val>...]
+
+That is, you will be given the name of the file to write as the
+first argument, a one-byte opcode as the second, and then a number
+of additional arguments specific to the opcode. The opcodes to
+support are:
+
+  0 -- no additional data
+  1 -- a list of 32-bit integers, with the length of the list encoded
+       as a 16-bit integer immediately following the opcode, and
+       the rest of the integers encoded in the order provided
+  2 -- a single string, with the length of the string encoded as a
+       16-bit integer immediately following the opcode, and then
+       the string of bytes *without* a terminating NULL
+
+Some example invocations:
+  
+    ./serial output1 0
+    ./serial output2 1 1 2 3 4 5 6
+    ./serial output3 2 "this is a test"
+
+We recommend doing this in C, though you may use another language
+if you like.  You can verify the output of your program is correct
+using "xxd". Note that there's another program on the VM called
+"hexdump", which DOES NOT print bytes in the order they appear in
+the file by default. You can obtain the expected results by running
+hexdump as "hexdump -C" or calling it as "hd".
+

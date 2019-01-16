@@ -1,0 +1,32 @@
+Name Resolution lies at the heart of understanding the Internet.
+In this exercise, you will use Scapy to construct DNS packets to
+obtain the IP Address of a host name.
+
+Refer to the DNS in-class exercise and become comfortable with the
+two built-in commands we use to resolve a hostname's IP address:
+``host`` and ``dig``.
+
+Your task consists of writing a client that performs iterative
+queries. Note the following points:
+
+1. Identify the components in the DNS Query Response packet and
+   print out the Hostname, Record type (A, CNAME, etc.), and IP
+   addr.
+2. You *must* perform iterative queries (non-recursive), so you
+   need to identify how to set this flag in the query packet.
+3. You must print out each iterative step (also known as layers).
+
+Your script should be called 'dns' and take in two arguments: 
+[-a hostname]
+[-n name server IP]
+
+Your output should look similar to the following:
+
+./dns -a search.yahoo.com -n 127.0.1.1
+search.yahoo.com. 5 ds-global3.l7.search.ystg1.b.yahoo.com.
+ds-global3.l7.search.ystg1.b.yahoo.com. 1 66.218.84.137
+
+./dns -a cs.cornell.edu -n 8.8.8.8
+cs.cornell.edu. 1 128.84.96.12
+cs.cornell.edu. 1 128.84.96.10
+
